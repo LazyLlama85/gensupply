@@ -16,6 +16,7 @@
   --orange:     #e07a1f;  /* brand accent */
   --orange-dk:  #bc630d;
   --orange-soft:#fae5cd;
+  --navy-soft:  #dbe6f1;  /* muted brand-navy tint — portrait backdrops */
   --green:      #3e7c4f;  /* crayon green — "active" states */
   --green-soft: #e0efe2;
   --line:       #e3d7c0;  /* hairline borders on paper */
@@ -447,8 +448,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   width: 142px; height: 142px; border-radius: 50% 46% 52% 48% / 48% 52% 46% 50%;
   object-fit: cover; margin: 0 auto 16px;
   border: 4px solid var(--white); box-shadow: var(--shadow);
-  /* Same warm backdrop behind every portrait */
-  background: var(--orange-soft);
+  /* Same soft-navy backdrop behind every portrait */
+  background: var(--navy-soft);
 }
 .member:nth-child(odd) img { transform: rotate(-2deg); }
 .member:nth-child(even) img { transform: rotate(2deg); }
