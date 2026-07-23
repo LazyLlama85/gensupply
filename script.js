@@ -102,49 +102,6 @@
     });
   }
 
-  /* ---------- Contact form (opens the visitor's email client) ---------- */
-  var form = document.getElementById("contactForm");
-  var status = document.getElementById("formStatus");
-  var ORG_EMAIL = "generationsupplyinquiries@gmail.com";
-
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var subject = form.subject.value.trim();
-      var message = form.message.value.trim();
-
-      if (!name || !email || !message) {
-        setStatus("Please fill in your name, email, and a message.", "err");
-        return;
-      }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setStatus("Please enter a valid email address.", "err");
-        return;
-      }
-
-      var mailSubject = subject || "Message from " + name + " via the website";
-      var mailBody =
-        message + "\n\n— " + name + "\n" + email;
-
-      var href =
-        "mailto:" + ORG_EMAIL +
-        "?subject=" + encodeURIComponent(mailSubject) +
-        "&body=" + encodeURIComponent(mailBody);
-
-      window.location.href = href;
-      setStatus("Opening your email app with the message ready to send. If nothing happens, just email us at " + ORG_EMAIL + ".", "ok");
-    });
-  }
-
-  function setStatus(msg, kind) {
-    if (!status) return;
-    status.textContent = msg;
-    status.className = "form-status " + (kind || "");
-  }
-
   /* ---------- Footer year (keeps copyright current) ---------- */
   // Static 2026 is fine for launch; no-op kept intentionally simple.
 })();
