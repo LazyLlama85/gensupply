@@ -265,6 +265,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Impact / stats (chalkboard) ---------- */
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 56px; }
+.stats-duo { grid-template-columns: repeat(2, 1fr); max-width: 720px; margin-inline: auto; }
 .stat {
   text-align: center; padding: 32px 18px; border-radius: var(--radius-hand);
   background: rgba(255,255,255,.05); border: 1.5px dashed rgba(255,255,255,.22);
