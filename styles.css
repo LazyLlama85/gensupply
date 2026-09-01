@@ -466,6 +466,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .partners-logos { display: flex; justify-content: center; flex-wrap: wrap; gap: 48px; }
 .partner { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 300px; }
 .partner img { height: 56px; width: auto; object-fit: contain; }
+.partner > a { display: block; line-height: 0; transition: transform .2s ease; }
+.partner > a:hover { transform: translateY(-3px); }
 .partner span { font-size: 14.5px; color: var(--muted); }
 .partner strong { color: var(--ink); }
 .partners-cta { margin-top: 36px; font-size: 15.5px; color: var(--muted); }
