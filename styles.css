@@ -595,3 +595,59 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   * { transition: none !important; animation: none !important; }
   .squiggle svg path { stroke-dashoffset: 0; }
 }
+
+/* ---------- Intro curtain ---------- */
+/* Three words, then the curtain lifts. The page underneath is fully rendered
+   the whole time, so crawlers and reduced-motion users never see this at all. */
+.gs-intro {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center; align-content: center;
+  background:
+    radial-gradient(115% 78% at 50% 40%,
+      #26527f 0%, #1b3e61 40%, #16304c 70%, #112742 100%);
+  /* Independent of JS: the curtain lifts on its own even if script.js fails */
+  animation: gsIntroLift .55s cubic-bezier(.4, 0, .2, 1) 2.55s forwards;
+}
+
+.gs-intro-words {
+  position: relative; margin: 0;
+  display: grid; place-items: center;
+  padding: 0 24px;
+}
+.gs-intro-word {
+  grid-area: 1 / 1;                     /* stack all three in one spot */
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(2.5rem, 8.5vw, 5.75rem);
+  letter-spacing: -.02em; line-height: 1.1;
+  color: #f7f3ea; white-space: nowrap;
+  opacity: 0;
+  animation: gsIntroWord .85s cubic-bezier(.22, 1, .36, 1) both;
+}
+.gs-intro-word i { color: var(--orange); font-style: normal; }
+.gs-intro-word:nth-child(1) { animation-delay: .10s; }
+.gs-intro-word:nth-child(2) { animation-delay: .95s; }
+.gs-intro-word:nth-child(3) { animation-delay: 1.80s; }
+
+.gs-intro-hint {
+  position: absolute; left: 50%; bottom: 42px; transform: translateX(-50%);
+  font-family: var(--hand); font-size: 1.05rem; color: rgba(247, 243, 234, .42);
+  opacity: 0; animation: gsIntroHint .5s ease-out 1.5s forwards;
+}
+
+@keyframes gsIntroWord {
+  0%   { opacity: 0; transform: translateY(15px) scale(.985); filter: blur(11px); }
+  20%  { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
+  72%  { opacity: 1; transform: translateY(0)    scale(1);    filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-11px) scale(1.015); filter: blur(9px); }
+}
+@keyframes gsIntroHint { to { opacity: 1; } }
+@keyframes gsIntroLift { to { opacity: 0; visibility: hidden; } }
+
+/* Repeat visit this session, or the user skipped it */
+.gs-intro-skip .gs-intro,
+.gs-intro-done .gs-intro { display: none; }
+
+/* Never animate at people who asked us not to */
+@media (prefers-reduced-motion: reduce) {
+  .gs-intro { display: none; }
+}
