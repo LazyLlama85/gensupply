@@ -651,3 +651,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .gs-intro { display: none; }
 }
+
+/* ---------- Timeline delivery photo ---------- */
+.stop-photo { margin: 16px 0 0; }
+.stop-photo img {
+  display: block; width: 100%; height: auto;
+  border-radius: 10px; border: 1.5px solid var(--line);
+}
