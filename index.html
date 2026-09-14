@@ -83,7 +83,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=9" />
+
+  <!-- Decide before first paint whether the event banner shows, so it never flashes
+       for someone who dismissed it or after the event has passed -->
+  <script>
+    (function () {
+      var EXPIRES = new Date(2026, 8, 18);           // midnight after Spirit Night
+      var KEY = "gs-promo-spirit-night-2026-09-17";  // keyed to the event, so the next one shows again
+      var hide = new Date() >= EXPIRES;
+      try { if (localStorage.getItem(KEY) === "1") hide = true; } catch (e) { /* private mode */ }
+      if (hide) document.documentElement.classList.add("gs-promo-hide");
+    })();
+  </script>
 
   <!-- Decide before first paint whether the intro plays, so repeat visits never flash it -->
   <script>
@@ -109,6 +121,25 @@
   </div>
 
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ EVENT BANNER ============ -->
+  <!-- Hidden automatically once the event passes; see the guard in <head>. -->
+  <aside class="promo" id="gsPromo" aria-label="Upcoming event">
+    <div class="container promo-inner">
+      <p class="promo-copy">
+        <span class="promo-when" id="gsPromoWhen">Coming up</span>
+        <span class="promo-text">
+          <strong>Spirit Night at Chick-fil-A Fair Lakes.</strong>
+          <span class="promo-date">Thursday, September 17</span>
+          <span class="promo-detail">&mdash; a portion of sales funds our next drive.</span>
+        </span>
+      </p>
+      <a class="promo-cta" href="#spirit-night">See details</a>
+      <button class="promo-close" id="gsPromoClose" type="button" aria-label="Dismiss this announcement">
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 3L3 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </aside>
 
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="top">
@@ -630,7 +661,7 @@
                 </div>
 
         <div class="hub-cards" style="margin-top: 40px;">
-          <article class="hub-card">
+          <article class="hub-card" id="spirit-night">
             <p class="hub-status"><span class="chip chip-soon">Upcoming</span></p>
             <h3>Chick-fil-A Fair Lakes Spirit Night</h3>
             <p class="hub-meta">September 17, 2026</p>
@@ -776,6 +807,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>

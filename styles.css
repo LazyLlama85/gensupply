@@ -100,6 +100,57 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .chip-done { color: var(--navy); background: var(--navy-soft); border-color: #bcd0e3; }
 
 /* ============================================================
+   EVENT BANNER
+   Sits above the sticky header, so it reads as an announcement and
+   scrolls away instead of eating room on small screens for good.
+   ============================================================ */
+.gs-promo-hide .promo { display: none; }
+.promo {
+  background: var(--navy-deep);
+  color: #f3ece0;
+  border-bottom: 2px solid var(--navy-ink);
+}
+.promo-inner {
+  display: flex; align-items: center; gap: 18px;
+  padding: 11px 0; min-height: 52px;
+}
+.promo-copy {
+  display: flex; align-items: center; gap: 14px;
+  flex: 1; min-width: 0; margin: 0;
+  font-size: 15px; line-height: 1.35;
+}
+/* The countdown reads as a hand-written note, not another status chip */
+.promo-when {
+  flex: none;
+  font-family: var(--hand); font-size: 1.28rem; font-weight: 700;
+  color: #ffc689; line-height: 1;
+  padding-right: 14px; border-right: 1.5px dashed rgba(243, 236, 224, .32);
+}
+.promo-text { min-width: 0; }
+.promo-text strong { color: #fff; font-weight: 800; }
+.promo-date { color: #cdd8e4; }
+.promo-detail { color: #cdd8e4; }
+.promo-cta {
+  flex: none; color: var(--navy-deep); background: var(--orange);
+  font-weight: 800; font-size: 14.5px; white-space: nowrap;
+  padding: 9px 18px; border-radius: 999px;
+  box-shadow: 0 2px 0 var(--orange-dk);
+  transition: transform .18s ease, background .18s ease;
+}
+.promo-cta:hover { background: #f08c33; color: var(--navy-deep); transform: translateY(-1px); }
+.promo-cta:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--orange-dk); }
+.promo-close {
+  flex: none; display: grid; place-items: center;
+  width: 32px; height: 32px; padding: 0; cursor: pointer;
+  color: #a9bacd; background: none;
+  border: 1.5px solid rgba(243, 236, 224, .22); border-radius: 50%;
+  transition: color .18s ease, border-color .18s ease, background .18s ease;
+}
+.promo-close svg { width: 13px; height: 13px; }
+.promo-close:hover { color: #fff; border-color: rgba(243, 236, 224, .5); background: rgba(243, 236, 224, .1); }
+.promo :focus-visible { outline: 3px solid #ffc689; outline-offset: 3px; }
+
+/* ============================================================
    HEADER
    ============================================================ */
 .site-header {
@@ -330,6 +381,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .ledger-total .ledger-count { font-size: 1.45rem; color: var(--orange-dk); }
 
 .hub-cards { display: flex; flex-direction: column; gap: 20px; }
+.hub-card { scroll-margin-top: 92px; }
 .hub-card {
   background: var(--white); border: 1.5px solid var(--line); border-radius: var(--radius-hand);
   padding: 24px 26px; box-shadow: var(--shadow);
@@ -539,6 +591,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 940px) {
+  .promo-detail { display: none; }  /* the date stays; only the sales line goes */
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero-figure { order: -1; max-width: 460px; }
   .hero-figure img { aspect-ratio: 16 / 11; }
@@ -575,6 +628,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 @media (max-width: 540px) {
+  /* Narrow phones: copy stacks on its own row, the button gets the row below,
+     and the close button tucks into the corner so nothing squeezes the headline. */
+  .promo-inner { position: relative; flex-wrap: wrap; gap: 9px; padding: 11px 0 13px; }
+  .promo-copy {
+    flex: 1 1 100%; flex-direction: column; align-items: flex-start;
+    gap: 2px; padding-right: 40px; font-size: 14.5px;
+  }
+  .promo-when { padding-right: 0; border-right: 0; font-size: 1.2rem; }
+  .promo-date { display: block; }  /* own line, so the date never wraps mid-phrase */
+  .promo-cta { flex: 1 1 auto; text-align: center; padding: 9px 14px; font-size: 14px; }
+  .promo-close { position: absolute; top: 8px; right: 0; }
   body { font-size: 16px; }
   .section { padding: 64px 0; }
   .hero { padding: 48px 0 64px; }

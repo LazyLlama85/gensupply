@@ -128,6 +128,37 @@
     setTimeout(dismiss, 3200);
   })();
 
+  /* ---------- Event banner: live countdown + dismiss ---------- */
+  (function () {
+    var promo = document.getElementById("gsPromo");
+    if (!promo) return;
+
+    var KEY = "gs-promo-spirit-night-2026-09-17";
+    var EVENT = new Date(2026, 8, 17);  // Thursday, September 17, 2026
+
+    // Count whole days between calendar dates, so "Tomorrow" doesn't depend
+    // on the time of day someone happens to be reading this.
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var days = Math.round((EVENT - today) / 86400000);
+
+    var when = document.getElementById("gsPromoWhen");
+    if (when) {
+      if (days > 1) when.textContent = "In " + days + " days";
+      else if (days === 1) when.textContent = "Tomorrow";
+      else if (days === 0) when.textContent = "Tonight";
+      else when.textContent = "";
+    }
+
+    var close = document.getElementById("gsPromoClose");
+    if (close) {
+      close.addEventListener("click", function () {
+        promo.remove();
+        try { localStorage.setItem(KEY, "1"); } catch (e) { /* private mode: shows again next visit */ }
+      });
+    }
+  })();
+
   /* ---------- Footer year (keeps copyright current) ---------- */
   // Static 2026 is fine for launch; no-op kept intentionally simple.
 })();
