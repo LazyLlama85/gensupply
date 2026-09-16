@@ -112,7 +112,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .promo-inner {
   display: flex; align-items: center; gap: 18px;
-  padding: 11px 0; min-height: 52px;
+  /* padding-block only — the shorthand would drop .container's side padding */
+  padding-top: 11px; padding-bottom: 11px; min-height: 52px;
 }
 .promo-copy {
   display: flex; align-items: center; gap: 14px;
@@ -390,6 +391,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hub-card h3 { font-size: 1.25rem; margin-bottom: 4px; }
 .hub-meta { font-size: 14.5px; color: var(--muted); margin-bottom: 10px; }
 .hub-raised { font-size: 1.02rem; }
+.hub-how { list-style: none; margin: 14px 0 0; padding: 14px 0 0; border-top: 1.5px dashed var(--line); }
+.hub-how li { font-size: 15px; color: var(--muted); }
+.hub-how li + li { margin-top: 7px; }
+.hub-how strong { color: var(--ink); }
+.hub-code {
+  font-family: var(--sans); font-weight: 800; letter-spacing: .06em;
+  color: var(--orange-dk); background: var(--orange-soft);
+  border: 1.5px solid #edc79a; border-radius: 6px; padding: 1px 8px;
+}
 .hub-raised strong {
   font-family: var(--serif); font-size: 1.3rem; color: var(--green); font-variant-numeric: tabular-nums;
 }
@@ -569,6 +579,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .contact-copy > p { color: var(--muted); font-size: 1.08rem; margin-bottom: 28px; }
 .contact-list li { display: flex; gap: 14px; padding: 12px 0; border-top: 1.5px dashed var(--line); align-items: baseline; }
 .contact-list li:first-child { border-top: 0; }
+.contact-list li > * { min-width: 0; overflow-wrap: anywhere; }
 .contact-label { min-width: 86px; font-size: 13px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 800; }
 
 /* ============================================================
@@ -630,15 +641,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 540px) {
   /* Narrow phones: copy stacks on its own row, the button gets the row below,
      and the close button tucks into the corner so nothing squeezes the headline. */
-  .promo-inner { position: relative; flex-wrap: wrap; gap: 9px; padding: 11px 0 13px; }
+  .promo-inner { position: relative; flex-wrap: wrap; gap: 15px; padding-top: 18px; padding-bottom: 20px; }
   .promo-copy {
     flex: 1 1 100%; flex-direction: column; align-items: flex-start;
-    gap: 2px; padding-right: 40px; font-size: 14.5px;
+    gap: 7px; padding-right: 44px; font-size: 15px; line-height: 1.45;
   }
-  .promo-when { padding-right: 0; border-right: 0; font-size: 1.2rem; }
+  .promo-when { padding-right: 0; border-right: 0; font-size: 1.32rem; }
   .promo-date { display: block; }  /* own line, so the date never wraps mid-phrase */
-  .promo-cta { flex: 1 1 auto; text-align: center; padding: 9px 14px; font-size: 14px; }
-  .promo-close { position: absolute; top: 8px; right: 0; }
+  .promo-cta { flex: 1 1 auto; text-align: center; padding: 13px 16px; font-size: 15px; }
+  .promo-close { position: absolute; top: 14px; right: 0; width: 34px; height: 34px; }
   body { font-size: 16px; }
   .section { padding: 64px 0; }
   .hero { padding: 48px 0 64px; }
