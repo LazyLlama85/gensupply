@@ -159,6 +159,47 @@
     }
   })();
 
+  /* ---------- Service-area map ---------- */
+  (function () {
+    var pins = [].slice.call(document.querySelectorAll(".gm-pin"));
+    var out  = document.getElementById("gmReadout");
+    if (!pins.length || !out) return;
+
+    var idle = out.innerHTML;
+    var flashed = null;
+
+    function show(pin) {
+      pins.forEach(function (p) { p.classList.toggle("is-on", p === pin); });
+      if (!pin) { out.innerHTML = idle; return; }
+
+      var html = pin.getAttribute("data-detail") || "";
+      var stop = pin.getAttribute("data-stop");
+      if (stop) html += ' <a href="#' + stop + '">see the full story &darr;</a>';
+      out.innerHTML = html;
+    }
+
+    function jump(pin) {
+      var id = pin.getAttribute("data-stop");
+      if (!id) return;
+      var card = document.getElementById(id);
+      if (!card) return;
+      card.scrollIntoView({ block: "center", behavior: "smooth" });
+      if (flashed) flashed.classList.remove("gm-flash");
+      card.classList.add("gm-flash");
+      flashed = card;
+      setTimeout(function () { card.classList.remove("gm-flash"); }, 2200);
+    }
+
+    pins.forEach(function (pin) {
+      pin.addEventListener("mouseenter", function () { show(pin); });
+      pin.addEventListener("focus",      function () { show(pin); });
+      pin.addEventListener("click",      function () { show(pin); jump(pin); });
+      pin.addEventListener("keydown",    function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(pin); jump(pin); }
+      });
+    });
+  })();
+
   /* ---------- Footer year (keeps copyright current) ---------- */
   // Static 2026 is fine for launch; no-op kept intentionally simple.
 })();

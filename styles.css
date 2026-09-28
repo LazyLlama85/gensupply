@@ -602,6 +602,78 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+/* ---------- Service-area map ---------- */
+.gm-wrap { margin-top: 30px; }
+.stop-card { transition: box-shadow .3s ease, border-color .3s ease; }
+.stop-card.gm-flash { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-soft); }
+.gm-figure {
+  position: relative; background: var(--white);
+  border: 1.5px solid var(--line); border-radius: var(--radius-hand);
+  box-shadow: var(--shadow); padding: 18px 18px 14px;
+}
+.gm-svg { width: 100%; height: auto; display: block; }
+/* Backdrop is warm neutral, not blue - everything off-frame is land.
+   Fairfax County and DC are the two places we work, so they carry the
+   saturation; the surrounding counties stay recessive context. */
+.gm-ground { fill: #faf7f1; }
+.gm-near   { fill: #f2eee6; stroke: #e6ded0; stroke-width: 1.5; }
+.gm-home   { fill: #ecdbbd; stroke: #c4ae86; stroke-width: 2.5; }
+.gm-dc     { fill: #d4e3f1; stroke: #a8c1da; stroke-width: 2.5; }
+
+.gm-hub  { color: var(--navy); }
+.gm-give { color: var(--orange-dk); }
+.gm-np   { color: var(--green); }
+
+.gm-pin { cursor: pointer; outline: none; }
+.gm-halo { fill: currentColor; opacity: .15; transition: r .18s ease, opacity .18s ease; }
+.gm-dot  { fill: currentColor; stroke: var(--white); stroke-width: 3; transition: r .18s ease; }
+.gm-lbl {
+  font-family: var(--sans); font-weight: 800; font-size: 15px; fill: var(--ink);
+  paint-order: stroke; stroke: var(--white); stroke-width: 4.5; stroke-linejoin: round;
+  pointer-events: none;
+}
+.gm-pin:hover .gm-halo, .gm-pin:focus-visible .gm-halo { r: 22; opacity: .3; }
+.gm-pin:hover .gm-dot,  .gm-pin:focus-visible .gm-dot  { r: 9; }
+.gm-pin.is-on .gm-halo { r: 22; opacity: .34; }
+.gm-pin.is-on .gm-dot  { r: 9.5; }
+.gm-pin:focus-visible .gm-dot { stroke: var(--orange); }
+
+/* legend */
+.gm-key { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 14px; padding-top: 14px; border-top: 1.5px dashed var(--line); }
+.gm-key span { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 700; color: var(--muted); }
+.gm-key i { width: 13px; height: 13px; border-radius: 50%; flex: none; }
+.gm-key .gm-hub  i { background: var(--navy); }
+.gm-key .gm-give i { background: var(--orange-dk); }
+.gm-key .gm-np   i { background: var(--green); }
+
+/* readout under the map - the route timeline below carries the full story,
+   so this stays a single line instead of repeating every stop as a card */
+.gm-readout {
+  margin-top: 16px; padding: 14px 18px;
+  background: var(--white); border: 1.5px solid var(--line); border-radius: 12px;
+  font-size: 15.5px; color: var(--ink); line-height: 1.5; min-height: 22px;
+}
+.gm-readout em { font-style: normal; color: var(--muted); }
+.gm-readout a { font-weight: 700; white-space: nowrap; }
+
+.gm-credit { margin-top: 10px; font-size: 12.5px; color: var(--muted); text-align: right; }
+.gm-credit a { color: var(--muted); text-decoration: underline; }
+
+@media (max-width: 720px) {
+  /* At phone width the map is ~340px across, so labels are illegible and a
+     pin is a ~2px tap target. The map becomes an overview and the list below
+     becomes the interface: tapping a card lights its pin. Pins are scaled up
+     so that highlight is actually visible. */
+  .gm-lbl { display: none; }
+  .gm-figure { padding: 12px 12px 10px; }
+  .gm-halo { r: 30; }
+  .gm-dot  { r: 15; stroke-width: 5; }
+  .gm-pin.is-on .gm-halo, .gm-pin:hover .gm-halo { r: 40; }
+  .gm-pin.is-on .gm-dot,  .gm-pin:hover .gm-dot  { r: 18; }
+  .gm-key { gap: 8px 18px; }
+  .gm-key span { font-size: 13.5px; }
+}
+
 @media (max-width: 940px) {
   .promo-detail { display: none; }  /* the date stays; only the sales line goes */
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
