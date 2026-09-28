@@ -607,7 +607,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .stop-card { transition: box-shadow .3s ease, border-color .3s ease; }
 .stop-card.gm-flash { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-soft); }
 .gm-figure {
-  position: relative; background: var(--white);
+  margin: 0; position: relative; background: var(--white);
   border: 1.5px solid var(--line); border-radius: var(--radius-hand);
   box-shadow: var(--shadow); padding: 18px 18px 14px;
 }
