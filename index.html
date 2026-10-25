@@ -63,7 +63,8 @@
         },
         "sameAs": [
           "https://www.instagram.com/generationsupply",
-          "https://www.fairfaxtimes.com/articles/helping-kids-succeed/article_2a3df8d2-0830-4caa-8f2f-b1328328c92b.html"
+          "https://www.fairfaxtimes.com/articles/helping-kids-succeed/article_2a3df8d2-0830-4caa-8f2f-b1328328c92b.html",
+          "https://wtop.com/virginia/2026/10/fairfax-high-schoolers-launch-initiative-to-connect-supplies-with-students-in-need/"
         ]
       },
       {
@@ -83,7 +84,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=19" />
+  <link rel="stylesheet" href="styles.css?v=20" />
 
   <!-- Decide before first paint whether the event banner shows, so it never flashes
        for someone who dismissed it or after the event has passed -->
@@ -96,30 +97,8 @@
       if (hide) document.documentElement.classList.add("gs-promo-hide");
     })();
   </script>
-
-  <!-- Decide before first paint whether the intro plays, so repeat visits never flash it -->
-  <script>
-    (function () {
-      try {
-        if (sessionStorage.getItem("gs-intro-seen") === "1") {
-          document.documentElement.classList.add("gs-intro-skip");
-        }
-      } catch (e) { /* private mode: just play it */ }
-    })();
-  </script>
 </head>
 <body>
-  <!-- ============ INTRO CURTAIN ============ -->
-  <!-- Purely decorative: the real page is already in the DOM underneath. -->
-  <div class="gs-intro" id="gsIntro" role="presentation" aria-hidden="true">
-    <p class="gs-intro-words">
-      <span class="gs-intro-word">Collect<i>.</i></span>
-      <span class="gs-intro-word">Count<i>.</i></span>
-      <span class="gs-intro-word">Deliver<i>.</i></span>
-    </p>
-    <span class="gs-intro-hint">click anywhere to skip</span>
-  </div>
-
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ============ EVENT BANNER ============ -->
@@ -576,7 +555,7 @@
 
         <!-- Partners -->
         <div class="partners">
-          <p class="partners-title">Partners</p>
+          <p class="partners-title">Corporate &amp; community partners</p>
           <div class="partners-logos">
             <div class="partner">
               <a href="https://educatefairfax.org/" target="_blank" rel="noopener">
@@ -610,14 +589,24 @@
               </a>
               <span><strong>Apple Federal Credit Union</strong> — A local credit union backing our drives across Fairfax County.</span>
             </div>
+          </div>
+          <p class="partners-cta">Want to see your business here? <a href="#contact">Become a partner →</a></p>
+
+          <p class="partners-title partners-title-media">As seen in</p>
+          <div class="partners-logos">
             <div class="partner">
               <a href="https://www.fairfaxtimes.com/articles/helping-kids-succeed/article_2a3df8d2-0830-4caa-8f2f-b1328328c92b.html" target="_blank" rel="noopener">
                 <img src="assets/fairfax-county-times.png" alt="Fairfax County Times" />
               </a>
               <span><strong>Fairfax County Times</strong> — <a href="https://www.fairfaxtimes.com/articles/helping-kids-succeed/article_2a3df8d2-0830-4caa-8f2f-b1328328c92b.html" target="_blank" rel="noopener">“Helping kids succeed” →</a> their story on Generation Supply.</span>
             </div>
+            <div class="partner">
+              <a href="https://wtop.com/virginia/2026/10/fairfax-high-schoolers-launch-initiative-to-connect-supplies-with-students-in-need/" target="_blank" rel="noopener">
+                <img class="partner-logo-square" src="assets/wtop.png" alt="WTOP News" />
+              </a>
+              <span><strong>WTOP News</strong> — <a href="https://wtop.com/virginia/2026/10/fairfax-high-schoolers-launch-initiative-to-connect-supplies-with-students-in-need/" target="_blank" rel="noopener">“Fairfax high schoolers collect and distribute school supplies” →</a> their story on Generation Supply.</span>
+            </div>
           </div>
-          <p class="partners-cta">Want to see your business here? <a href="#contact">Become a partner →</a></p>
         </div>
       </div>
     </section>
@@ -809,6 +798,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=19"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>

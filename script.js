@@ -102,32 +102,6 @@
     });
   }
 
-  /* ---------- Intro curtain ---------- */
-  // The CSS animation lifts the curtain on its own; this only lets people cut it
-  // short and makes sure it plays once per session rather than on every page view.
-  (function () {
-    var intro = document.getElementById("gsIntro");
-    if (!intro) return;
-
-    var done = false;
-    function dismiss() {
-      if (done) return;
-      done = true;
-      document.documentElement.classList.add("gs-intro-done");
-      try { sessionStorage.setItem("gs-intro-seen", "1"); } catch (e) {}
-      ["click", "keydown", "wheel", "touchstart"].forEach(function (evt) {
-        window.removeEventListener(evt, dismiss);
-      });
-    }
-
-    ["click", "keydown", "wheel", "touchstart"].forEach(function (evt) {
-      window.addEventListener(evt, dismiss, { passive: true });
-    });
-
-    // Matches the CSS timeline (2.55s delay + 0.55s lift), plus a little slack
-    setTimeout(dismiss, 3200);
-  })();
-
   /* ---------- Event banner: live countdown + dismiss ---------- */
   (function () {
     var promo = document.getElementById("gsPromo");
